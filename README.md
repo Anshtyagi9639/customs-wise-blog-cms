@@ -12,13 +12,13 @@ New images can be stored on **Cloudinary** (when the three `CLOUDINARY_*` settin
 
 ## Run it
 
-Requires Node.js 20 or newer.
+Requires Node.js 20.19 or newer.
 
 ```
 npm install
 npm run sample-image        # creates test images in samples/
 npm run build
-npm run start
+npm run start:local       # http://127.0.0.1:3100 (plain `npm run start` uses the PORT the host gives, default 3000)
 ```
 
 Then open:
@@ -106,5 +106,7 @@ src/app/api/public/v1/  the read-only API a website would read from, one path pe
 src/app/sites/  the local public preview of each website
 scripts/        sample image maker, importer, workflow test, MongoDB migration, connection check and local test server
 ```
+
+Deploying to a Node.js host: see [docs/HOSTINGER_DEPLOYMENT.md](docs/HOSTINGER_DEPLOYMENT.md). **Do not deploy before sign-in exists.**
 
 Planning documents and the hosting readiness notes are in the Customs Wise website repository under `docs/blog-cms/`.

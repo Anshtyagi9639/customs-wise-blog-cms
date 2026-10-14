@@ -1,0 +1,13 @@
+/node_modules
+/.next/
+/out/
+*.tsbuildinfo
+next-env.d.ts
+npm-debug.log*
+
+# Local CMS content and uploaded images (test data, never committed)
+/data/
+
+# env files
+.env*
+!.env.example

@@ -1,0 +1,1 @@
+This is a text file used to check that invalid uploads are refused.

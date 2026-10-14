@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/*
+ * Colour, type and spacing tokens copied from the Customs Wise website (app/globals.css there), so the local
+ * preview matches the real site. The four "demo" colours are for the fictional second website only.
+ */
+@theme {
+  --color-*: initial;
+  --color-overnight: #000315;
+  --color-ship: #0a3542;
+  --color-breeze: #4a6876;
+  --color-atlantic: #176a90;
+  --color-cargo: #f9ed32;
+  --color-freight: #f79420;
+  --color-haul: #fbb03a;
+  --color-holyhead: #2eacb1;
+  --color-transit: #3eb661;
+  --color-starlight: #bdccd4;
+  --color-pebble: #747576;
+  --color-salt: #ffffff;
+  --color-mist: #f1f5f7;
+  --color-line: #d5dfe4;
+  --color-ink-soft: #3c4d55;
+  --color-error: #b3261e;
+  --color-current: currentColor;
+  --color-transparent: transparent;
+
+  --color-demo-ink: #1f2933;
+  --color-demo-leaf: #2f6f4f;
+  --color-demo-sand: #f6f1e7;
+  --color-demo-clay: #b5562b;
+
+  --font-display: var(--font-oswald), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-open-sans), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  --radius-brand: 6px;
+  --container-site: 75rem;
+  --shadow-card: 0 1px 2px rgb(0 3 21 / 0.06), 0 8px 24px -12px rgb(0 3 21 / 0.25);
+}
+
+:root {
+  --nav-h: 4.5rem;
+  --clearance: linear-gradient(135deg, #000315 0%, #0a3542 48%, #4a6876 100%);
+  --stripes: repeating-linear-gradient(45deg, rgb(255 255 255 / 0.028) 0 46px, transparent 46px 92px);
+  color-scheme: light;
+}
+@media (max-width: 639px) {
+  :root { --nav-h: 4rem; }
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-salt font-sans text-overnight antialiased;
+    line-height: 1.65;
+    overflow-x: clip;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-atlantic);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  .bg-clearance { background-image: var(--stripes), var(--clearance); }
+  .container-site {
+    width: min(var(--container-site), 100% - 2.5rem);
+    margin-inline: auto;
+  }
+}
+
+@layer components {
+  /* ---------- Customs Wise theme (same rules as the website) ---------- */
+  .theme-cw h1, .theme-cw h2, .theme-cw h3 {
+    @apply font-display font-normal text-atlantic;
+    line-height: 1.08;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
+  }
+  .prose-cw { max-width: 72ch; color: var(--color-overnight); }
+  .prose-cw p, .prose-cw li { color: var(--color-ink-soft); }
+  .prose-cw p { margin: 0 0 1em; }
+  .prose-cw .lede { font-size: 1.15rem; }
+  .prose-cw h2 { font-size: clamp(1.7rem, 2.6vw, 2.2rem); margin: 1.6em 0 0.5em; }
+  .prose-cw h2:first-child { margin-top: 0; }
+  .prose-cw h3 { font-size: 1.4rem; color: var(--color-overnight); margin: 1.4em 0 0.4em; }
+  .prose-cw ul, .prose-cw ol { padding-left: 1.25em; margin: 0 0 1.2em; }
+  .prose-cw ul { list-style: disc; }
+  .prose-cw ol { list-style: decimal; }
+  .prose-cw li { margin: 0.3em 0; }
+  .prose-cw li::marker { color: var(--color-freight); }
+  .prose-cw strong { color: var(--color-overnight); }
+  .prose-cw a { color: var(--color-atlantic); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-cw a:hover { color: var(--color-freight); }
+  .prose-cw .callout {
+    border-left: 4px solid var(--color-freight);
+    background: var(--color-mist);
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius-brand) var(--radius-brand) 0;
+    margin: 1.4em 0;
+  }
+  .prose-cw .callout p { margin: 0; color: var(--color-overnight); }
+  /* New block types the CMS adds; styled in the site's existing language */
+  .prose-cw blockquote { border-left: 4px solid var(--color-atlantic); padding: 0.2rem 0 0.2rem 1.25rem; margin: 1.4em 0; }
+  .prose-cw blockquote p { font-size: 1.12rem; color: var(--color-overnight); margin: 0; }
+  .prose-cw blockquote cite { display: block; margin-top: 0.5rem; font-size: 0.88rem; font-style: normal; color: var(--color-pebble); }
+  .prose-cw figure { margin: 1.6em 0; }
+  .prose-cw figure img { border-radius: var(--radius-brand); height: auto; max-width: 100%; }
+  .prose-cw figcaption { margin-top: 0.6rem; font-size: 0.86rem; color: var(--color-pebble); }
+
+  /* ---------- Demo Website theme (fictional) ---------- */
+  .theme-demo { font-family: var(--font-serif); color: var(--color-demo-ink); background: var(--color-demo-sand); }
+  .theme-demo h1, .theme-demo h2, .theme-demo h3 { font-family: var(--font-serif); font-weight: 700; color: var(--color-demo-ink); line-height: 1.2; }
+  .prose-demo { max-width: 68ch; font-size: 1.08rem; }
+  .prose-demo p { margin: 0 0 1.1em; }
+  .prose-demo h2 { font-size: 1.7rem; margin: 1.6em 0 0.5em; }
+  .prose-demo h3 { font-size: 1.3rem; margin: 1.4em 0 0.4em; }
+  .prose-demo ul, .prose-demo ol { padding-left: 1.4em; margin: 0 0 1.2em; }
+  .prose-demo ul { list-style: square; }
+  .prose-demo ol { list-style: decimal; }
+  .prose-demo li { margin: 0.3em 0; }
+  .prose-demo a { color: var(--color-demo-leaf); text-decoration: underline; }
+  .prose-demo .callout { background: var(--color-salt); border: 1px solid var(--color-demo-leaf); padding: 1rem 1.25rem; margin: 1.4em 0; }
+  .prose-demo .callout p { margin: 0; }
+  .prose-demo blockquote { border-left: 3px solid var(--color-demo-clay); padding-left: 1.2rem; margin: 1.4em 0; font-style: italic; }
+  .prose-demo blockquote cite { display: block; margin-top: 0.4rem; font-size: 0.9rem; font-style: normal; }
+  .prose-demo figure { margin: 1.6em 0; }
+  .prose-demo figure img { height: auto; max-width: 100%; }
+  .prose-demo figcaption { margin-top: 0.5rem; font-size: 0.88rem; }
+
+  /* ---------- Admin screens ---------- */
+  .admin { @apply bg-mist text-overnight; }
+  .page-title { @apply text-[1.6rem] leading-tight font-bold text-overnight; }
+  .section-title { @apply text-[1.1rem] leading-tight font-bold text-overnight; }
+  .card { @apply rounded-[10px] border border-line bg-salt p-5; }
+  .btn {
+    @apply inline-flex min-h-10 cursor-pointer items-center justify-center gap-1.5 rounded-brand border border-transparent px-4 text-[0.92rem] font-bold whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-55;
+  }
+  .btn-primary { @apply bg-atlantic text-salt hover:bg-ship; }
+  .btn-accent { @apply bg-cargo text-overnight hover:bg-haul; }
+  .btn-secondary { @apply border-line bg-salt text-overnight hover:border-atlantic hover:text-atlantic; }
+  .btn-danger { @apply border-error/40 bg-salt text-error hover:bg-error hover:text-salt; }
+  .btn-sm { @apply min-h-8 px-3 text-[0.84rem]; }
+  .label { @apply mb-1 block text-[0.88rem] font-bold text-overnight; }
+  .hint { @apply mt-1 text-[0.8rem] text-pebble; }
+  .input {
+    @apply min-h-10 w-full rounded-brand border border-line bg-salt px-3 py-2 text-[0.95rem] text-overnight placeholder:text-pebble focus-visible:outline-offset-0 aria-invalid:border-error;
+  }
+  textarea.input { @apply leading-snug; }
+  .field-error { @apply mt-1 text-[0.82rem] font-semibold text-error; }
+  .badge { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-[0.76rem] font-bold whitespace-nowrap; }
+  .badge-draft { @apply bg-mist text-ink-soft ring-1 ring-line; }
+  .badge-scheduled { @apply bg-haul/25 text-overnight; }
+  .badge-published { @apply bg-transit/20 text-ship; }
+  .table { @apply w-full border-collapse text-left text-[0.92rem]; }
+  .table th { @apply border-b border-line px-3 py-2 text-[0.78rem] font-bold tracking-wide text-pebble uppercase; }
+  .table td { @apply border-b border-line px-3 py-2.5 align-top; }
+  .table tr:last-child td { @apply border-b-0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
